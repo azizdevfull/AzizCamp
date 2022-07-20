@@ -1,0 +1,39 @@
+<html>
+<head>
+<%= stylesheet_link_tag "project_show" %>
+</head>
+<%= render "pages/navbar" %>
+<body class="body_pshow">  
+    <h1 class="h1_show"><%= @project.name %></h1>
+    <%= button_to @project, method: :delete, class: "btn mt-4" do %>
+    <span class="iconify" data-icon="ant-design:delete-outlined"data-width="30"></span>
+<% end %>
+<%# <%= link_to 'Back', :back %>              
+
+    
+  
+    <%= link_to "Edit Project", edit_project_path(@project), class: "controldrop btndrop anavbar mt-4 edit_btn"  %>
+
+<div class="project__container">
+<div class="card1">
+  <h1 align="center">Aziz</h1>
+  <div class="container">
+    <h4><b><%= link_to 'New Task', new_project_task_path(@project.id) %></b></h4> 
+    <p>Architect & Engineer</p> 
+  </div>
+</div>
+<div>
+<h1>Aziz</h1>
+<div class="container">
+    <h4><b><%= link_to 'New attachment', new_project_attacher_path(@project.id) %></b></h4> 
+    <p>Architect & Engineer</p> 
+  </div>
+</div>
+<div>
+<h1>Aziz</h1>
+</div>
+</div>
+
+<%= render "menu" %>
+</body>
+</html>

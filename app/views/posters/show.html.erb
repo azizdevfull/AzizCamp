@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+<%= render @poster %>
+
+<% if @poster.user != current_user %>
+  <h4><%= link_to "Back to posters", posters_path %></h4>
+<% else %>
+<div>
+  <%= link_to "Edit this poster", edit_poster_path(@poster) %> |
+  <%= link_to "Back to posters", posters_path %>
+
+  <%= button_to "Destroy this poster", @poster, method: :delete %>
+</div>
+</div>
+<% end %>
+<div class="container">
+<%= render 'pcomments/form', poster: @poster, pcomment: @poster.pcomments.build %>
+<% @pcomments.each do |pcomment| %>
+<%= render 'pcomments/comment', poster: @poster, pcomment: pcomment %>
+<% end %>
+</div>

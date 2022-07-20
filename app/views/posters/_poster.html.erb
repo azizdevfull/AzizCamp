@@ -1,0 +1,22 @@
+<div id="<%= dom_id poster %>">
+  
+  <p>
+    <strong>Title:</strong>
+    <%= poster.title %>
+  </p>
+  <h5>posted by <%= link_to poster.user.username, user_path(poster.user) %> </h5>
+  <h4> <%= pluralize(poster.views, "view") %> </h4>
+  
+  <% if poster.pcomments.count != 0 %>
+    <h5> <%= pluralize(poster.pcomments.count, "comment") %> </h5>
+    <% else %>
+    <h5> No Comment</h5>
+  <% end %>
+  
+  
+  <p>
+    <strong>Body:</strong>
+    <%= poster.body %>
+  </p>
+
+</div>

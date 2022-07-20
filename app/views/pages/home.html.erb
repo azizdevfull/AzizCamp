@@ -1,0 +1,37 @@
+<html>
+  <head>
+  </head>
+  <body class="body-home2 body_reg">
+  <% if current_user %>
+
+   <%= render "navbar" %>
+      
+<h1 align="center">My Basecamp</h1>
+ <br />
+ <%= render "project" %>
+    <% else %>
+      <%= stylesheet_link_tag "register"%>
+    <div class="section">
+      <div class="container">
+        
+        <div class="row full-height justify-content-center">
+          
+          <div class="col-12 text-center align-self-center py-5">
+            
+            <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <div class="center-wrap">
+                    <p class="typewriter link">Welcome To My Basecamp</p>
+                      <div class="section text-center">
+                        <%= link_to "Sign Up!", new_user_registration_path, class: "btn mt-4" %>
+                             <%= link_to "Login", new_user_session_path, class: "btn mt-4" %>
+                                <% end %>
+                        <p class="mb-0 mt-4 text-center">
+                        </p>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </body>
+</html>

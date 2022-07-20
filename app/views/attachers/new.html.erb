@@ -1,0 +1,38 @@
+<%= render 'form' %>
+
+<style>
+
+.img_upload{
+   border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+</style>
+<% @attachers.each do |attacher| %>
+<% if attacher.upload.attached? %>
+
+<% if  attacher.upload.image?%> <br>
+<%= attacher.name %></td>
+<p><%= link_to image_tag(attacher.upload, class: "img_upload"),  rails_blob_path(attacher.upload, disposition: "attachment") %></p>  
+         <td><%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %></td></td></td>  <br> <hr>
+<td>
+
+<% elsif attacher.upload.audio? %>
+  <p><%= attacher.upload.filename %></p>
+  <audio controls>
+  <source src=" <%= rails_blob_url(attacher.upload, disposition: "attachment") %>" type="audio/mpeg"/>
+  </audio>
+  <%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %> <hr><br>
+<% else %>
+  <tr>
+    <td><%= attacher.name %></td> 
+    <%= link_to attacher.upload.filename,  rails_blob_path(attacher.upload, disposition: "attachment") %></p>  
+         <td><%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %></td></td></td>  <br> <hr>
+         <div>
+        </div>
+  </tr>
+  <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "navbar" %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light2">
+  <div class="container-fluid">
+    <a class="colorusername anavbaruser" href="">Hello <%= @project.name %>!</a>
+    <button id="navbar-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul> 
+      <ul class="navbar-nav">
+              <li ><a class="anavbar">  
+                <%= link_to 'Edit project', edit_project_path(@project), class: "controldrop btndrop anavbar" %>
+              </li></a>
+            </ul><br>
+ <label class="drop">
+                <%= button_to "hg3ed", @project, method: :delete, class: "controldrop btndrop" %> <!-- Toggle Drop -->
+                <%# <span class="controldrop btndrop">Profile</span> <!-- Fake button --> %>
+                <!-- Alternative to close dropdown with click out -->
+                <label for="target-drop-example" class="overlay-close"></label>
+          
+              </label>
+    </div>
+  </div>
+</nav>

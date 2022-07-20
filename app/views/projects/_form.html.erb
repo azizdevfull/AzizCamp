@@ -1,0 +1,58 @@
+
+<html >
+  <head>
+  <%= stylesheet_link_tag "new_project"%>
+  </head>
+  <body>
+  <%= form_with(model: project) do |form| %>
+  <% if project.errors.any? %>
+    <div style="color: #dd899e" align="center">
+      <h4><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h4>
+    <ul>
+        <% project.errors.each do |error| %>
+          <p><%= error.full_message %></p>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <div class="section">
+      <div class="container">
+        <div class="row full-height justify-content-center">
+          <div class="col-12 text-center align-self-center py-5">
+            <div class="section pb-5 pt-5 pt-sm-2 text-center">
+              <h6 class="mb-0 pb-3">
+                <span>New Project</span> 
+              </h6>
+              <label for="reg-log"></label>
+              <div class="card-3d-wrap mx-auto">
+                <div class="card-3d-wrapper">
+                  <div class="card-front">
+                    <div class="center-wrap">
+                      <div class="section text-center">
+                        <h4 class="mb-4 pb-3">New Project</h4>
+                        <div class="form-group">
+                            <%= form.text_field :name, class: "form-style", placeholder: "Project Name"%>
+                            <i class="iconify input-icon" data-icon="fa6-solid:folder-plus"></i>
+                        </div>
+                            <div>
+                               <%= form.number_field :user_id, id: :project_user_id, value: current_user.id, type: :hidden %>
+                            </div>
+                        <div class="form-group mt-2">
+                            <%= form.text_area :description, class: "form-style", placeholder: "Project Description"%>
+                          <i class="iconify input-icon" data-icon="fa6-solid:folder-plus"></i>
+                        </div>
+                            <%= form.submit "Creat Project", class: "btn mt-4"%>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
