@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticated :user, ->(user) { user.moderator? } do
+  get 'moderator', to: 'moderator#index'
+  get 'moderator/projects'
+  get 'moderator/attachers'
+  get 'moderator/tasks'
+  get 'moderator/posters'
+  get 'moderator/pcomments'
+  get 'moderator/users'
+  get 'moderator/roject'
+  get 'moderator/show_poster/:id', to: "moderator#show_poster", as: 'moderator_poster'
   get 'users/profile'
-  
+  end
   resources :posters do
     resources :comments
     resources :pcomments
@@ -14,9 +25,9 @@ Rails.application.routes.draw do
 
   get 'u/:id', to: 'users#profile', as: 'user'
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  
+
+  # authenticated :user, ->(user) { user.admin? } do
+  # end
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

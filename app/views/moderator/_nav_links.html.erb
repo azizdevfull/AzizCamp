@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <p>
+    <%= link_to "Moderator", moderator_path %><%= " > #{params[:action].capitalize}" unless params[:action].eql?("index") %>
+  </p>
+  <div class="btn-group">
+    <%= render "moderator/link", resource: Poster %>
+    <%= render "moderator/link", resource: Pcomment %>
+    <%= render "moderator/link", resource: User %>
+  </div>
+</div>

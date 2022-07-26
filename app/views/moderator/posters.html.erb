@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="text-center">Moderator</h1>
+  <%= render 'moderator/nav_links' %>
+
+    <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Poster</th>
+        <th scope="col">Author</th>
+        <th scope="col">Pcomments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posters.each do |poster| %>
+        <tr>
+          <th scope="row"><%= poster.id %></th>
+          <td><%= link_to poster.title.truncate(15), moderator_poster_path(poster) %></td>
+          <td><%= poster.user.username %></td>
+          <td><%= pluralize(poster.pcomments.size, "Comment") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

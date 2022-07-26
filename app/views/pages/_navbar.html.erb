@@ -15,6 +15,11 @@
                 <%= link_to 'New Blog',  posters_path, class: "controldrop btndrop anavbar" %>
               </li></a>
             </ul><br>
+            <ul class="navbar-nav">
+              <li ><a class="anavbar">  
+                <%= link_to "Moderator", moderator_path, class: "controldrop btndrop anavbar" if current_user.moderator? %>
+              </li></a>
+            </ul><br>
                   <ul class="navbar-nav">
               <li ><a class="anavbar">  
                 <%= link_to 'New Project',  new_project_path, class: "controldrop btndrop anavbar" %>

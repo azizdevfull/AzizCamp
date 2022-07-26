@@ -92,3 +92,4 @@ gem "mini_magick", "~> 4.11"
 # gem 'activeadmin-audit'
 gem 'active_admin_flat_skin'
 gem 'font-awesome-rails'
+gem "rails_admin", "~> 3.0"
