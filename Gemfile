@@ -93,4 +93,4 @@ gem "ckeditor", "~> 5.1"
 
 gem "friendly_id", "~> 5.4"
 
-gem "local_time", "~> 2.1"
+# gem "local_time", "~> 2.1"
