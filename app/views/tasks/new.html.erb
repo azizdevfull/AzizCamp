@@ -1,20 +1,69 @@
-<h1>New task</h1>
+<%= render 'pages/navbar' %>
 
-<%= render 'form' %>
+<%= form_for([@task.project, @task]) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-<hr>
-<% @tasks.each do |task| %>
-<% if task.persisted? %>
-  <tr>
-    <td><%= task.description %></td> <br>
-    <%# <td><%= task.project </td> <br> %>
-    <td><%= link_to 'Show', [task.project, task] %></td> 
-    <td><%= link_to 'Destroy', [task.project, task], 'data-turbo-method': :delete %></td> <br>
-  </tr>
-<% end %>
-<% end %>
-</table>
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
 
-<%= link_to 'Back', project_tasks_path(@task.project) %>
+            <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+            <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              <div class="col-12">
+                <div class="form-outline">
+                  <%= f.text_area :description, class:"form-control", id: "form1" %>
+                  <label class="form-label" for="form1">Enter a task here</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <%= f.submit "Creat Task", class:"btn btn-primary"%>
+              </div>
+            </form>
+              <% end %>
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @tasks.each do |task| %>
+                <% if task.persisted? %>
+                <tr>
+                  <th scope="row"><%= task.id %></th>
+                  <td><%= task.description %></td>
+                  <td>
+                    <%= link_to 'Destroy', [task.project, task], 'data-turbo-method': :delete, class:"btn btn-danger" %>
+                    <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-success ms-1"  %>
+                  </td>
+                </tr>
+                <% end %>
+                <% end %>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <%= render 'projects/menu' %>

@@ -64,10 +64,10 @@
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-#card:hover {
+/* #card:hover {
   transform: rotateY(180deg);
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
-}
+} */
 
 #card2:hover {
   transform: rotateY(-180deg);
@@ -90,6 +90,7 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 8px;
+  /* background-color: #222222; */
 }
 
 .back {

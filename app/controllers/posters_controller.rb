@@ -9,7 +9,7 @@ class PostersController < InheritedResources::Base
   # GET /posts/1 or /posts/1.json
   def show
     @poster.update(views: @poster.views + 1)
-    @comments = @poster.comments.order(created_at: :desc)
+    # @comments = @poster.comments.order(created_at: :desc)
     @pcomments = @poster.pcomments.order(created_at: :desc)
    end
     
@@ -23,15 +23,17 @@ class PostersController < InheritedResources::Base
   # GET /posts/new
   def new
     @poster = Poster.new
+    @users = User.all
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    @users = User.all
+  end
 
   # POST /posts or /posts.json
   def create
     @poster = Poster.new(poster_params)
-    @poster.user = current_user
     # @poster.user = current_user
 
     respond_to do |format|
@@ -80,7 +82,7 @@ class PostersController < InheritedResources::Base
   end
 
     def poster_params
-      params.require(:poster).permit(:title, :body)
+      params.require(:poster).permit(:title, :body, :user_id, :image)
     end
 
 end

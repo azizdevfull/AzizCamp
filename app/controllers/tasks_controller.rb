@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     # PUT projects/1/tasks/1
     def update
       if @task.update(task_params)
-        redirect_to(@task.project)
+        redirect_to new_project_task_path
       else
         render action: 'edit'
       end
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_project
-        @project = current_user.projects.find(params[:project_id])
+        @project = current_user.projects.friendly.find(params[:project_id])
       end
   
       def set_task

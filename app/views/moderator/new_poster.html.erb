@@ -1,0 +1,32 @@
+<%= form_with(model: @poster) do |form| %>
+  <% if @poster.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@poster.errors.count, "error") %> prohibited this poster from being saved:</h2>
+
+      <ul>
+        <% @poster.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+  <%= form.label :user, style: "display: block" %>
+  <%= form.select :user_id, options_for_select(@users.collect { |cat| [cat.username, cat.id] } ) %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

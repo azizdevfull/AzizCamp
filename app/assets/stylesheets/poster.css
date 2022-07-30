@@ -1,4 +1,11 @@
-body{margin-top:20px;}
+.bd-poster{
+  /* margin-top:20px; */
+  /* background-color: #fff; */
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 4%;
+}
 .post .article-v2 {
   padding: 0 15px;
 }
@@ -14,11 +21,11 @@ body{margin-top:20px;}
 }
 
 .post .article-v2 .article-content-main {
-  -webkit-box-shadow: 1px 0px 20px 1px rgba(0, 0, 0, 0.15);
-          box-shadow: 1px 0px 20px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 0px 20px 1px rgb(0 0 0 / 15%);
   padding: 30px;
   position: relative;
-  background: #fff;
+  background: #222222; /* cradning rangi */
+  color: white;
   margin-top: -75px;
 }
 
@@ -58,4 +65,13 @@ body{margin-top:20px;}
 .post .article-v2 .article-footer .footer-meta a i {
   font-size: 16px;
   margin-left: 2px;
+}
+.post_btn{
+  float: right;
+  margin-top: 16px;
+  margin-right: 7px;
+
+}
+.us_i{
+  color: #fff;
 }

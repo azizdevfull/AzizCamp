@@ -1,3 +1,4 @@
+<div class="div_edit_post">
 <%= form_with(model: poster) do |form| %>
   <% if poster.errors.any? %>
     <div style="color: red">
@@ -21,7 +22,26 @@
     <%= form.text_area :body %>
   </div>
 
+    <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image,class: "btn btn-secondary" %>
+  </div>
+
+      <% if current_user.moderator? || current_user.admin? %>
+    <div>
+  <%= form.label :user, style: "display: block" %>
+  <%= form.select :user_id, options_for_select(@users.collect { |cat| [cat.username, cat.id] } ) %>
+  </div> 
+     
+   <% else %>
+     <div>
+       <%= form.number_field :user_id, id: :project_user_id, value: current_user.id, type: :hidden %>
+   </div>
+    <% end %>
+
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Update Post", class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>

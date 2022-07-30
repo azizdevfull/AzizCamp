@@ -1,4 +1,91 @@
-<%= render 'form' %>
+<%= render 'pages/navbar' %> <br><h1 align="center">Attachments</h1> <br> 
+<%= form_for([@attacher.project, @attacher]) do |f| %>
+  <% if @attacher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attacher.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @attacher.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="aziz">
+<%= f.text_field :name, class: "aziz" %>  
+      <%= f.file_field :upload, class: "aziz" %> <br>
+
+      <%= f.submit "Add", class:"btn btn-primary btn_add"%> <br> 
+      
+      <% end %>
+      </div><br><br>
+      
+
+<%= stylesheet_link_tag "attacher" %>
+<link rel="stylesheet" href="style.css">
+<div class="container"> <br>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+
+              <% @attachers.each do |attacher| %>
+                <% if attacher.upload.attached? %>
+              
+                <div class="col-md-6 col-xl-4">
+                    <article class="post">
+                        <div class="article-v2">
+                            <!-- /.article-thumb -->
+                            <div class="article-content-main">
+                                <div class="article-header">
+                                <% if  attacher.upload.image?%>
+                                    <h2 class="entry-title"><a href="#"><%= link_to image_tag(attacher.upload, class: "img_upload"),  rails_blob_path(attacher.upload, disposition: "attachment") %>
+                                    <% elsif attacher.upload.audio? %>
+                                    <h2 class="entry-title"><a href="#"><%= attacher.upload.filename %>
+                                      <audio controls>
+                                       <source src=" <%= rails_blob_url(attacher.upload, disposition: "attachment") %>" type="audio/mpeg"/>
+                                       </audio></a></h2>
+                                       <% else %>
+                                       <h2 class="entry-title"><a href="#"><%= link_to attacher.upload.filename,  rails_blob_path(attacher.upload, disposition: "attachment") %></a></h2>
+                                        <% end %>
+
+                                    <div class="entry-meta">
+                                        <div class="entry-date"><%= attacher.name %></div>
+
+                                    </div>
+                                    <!-- /.entry-meta -->
+                                </div>
+                                <div class="article-footer">
+                                    <div class="row">
+                                        <div class="col-6 text-left footer-link">
+                                            <%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete, class: "more-link"  %>
+                                        </div>
+                                    </div>
+                                    <!--  /.row -->
+                                </div>
+                                <!--  /.article-footer -->
+                            </div>
+                            <!--  /.article-content-main -->
+                        </div>
+                        <!--  /.article-v2 -->
+                    </article>
+                    <!--  /.post -->
+                </div><br>
+                <!--  /.col-md-6 -->
+            <% end %>
+            
+            <% end %>
+            
+
+                
+            </div>
+            <!--  /.blog-carousel -->
+        </div>
+        <!--  /.col-12 -->
+    </div>
+    <!--  /.row -->
+</div>
+
+
 
 <style>
 
@@ -10,29 +97,5 @@
 }
 
 </style>
-<% @attachers.each do |attacher| %>
-<% if attacher.upload.attached? %>
 
-<% if  attacher.upload.image?%> <br>
-<%= attacher.name %></td>
-<p><%= link_to image_tag(attacher.upload, class: "img_upload"),  rails_blob_path(attacher.upload, disposition: "attachment") %></p>  
-         <td><%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %></td></td></td>  <br> <hr>
-<td>
-
-<% elsif attacher.upload.audio? %>
-  <p><%= attacher.upload.filename %></p>
-  <audio controls>
-  <source src=" <%= rails_blob_url(attacher.upload, disposition: "attachment") %>" type="audio/mpeg"/>
-  </audio>
-  <%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %> <hr><br>
-<% else %>
-  <tr>
-    <td><%= attacher.name %></td> 
-    <%= link_to attacher.upload.filename,  rails_blob_path(attacher.upload, disposition: "attachment") %></p>  
-         <td><%= link_to 'Destroy', [attacher.project, attacher], 'data-turbo-method': :delete %></td></td></td>  <br> <hr>
-         <div>
-        </div>
-  </tr>
-  <% end %>
-  <% end %>
-<% end %>
+<%= render 'projects/menu' %>

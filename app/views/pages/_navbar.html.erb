@@ -11,30 +11,37 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       </ul> 
       <ul class="navbar-nav">
+      <% if current_user.admin? %>
+        <li ><a class="anavbar">  
+                <%= link_to "Admin", "/admin", class: "controldrop  anavbar2" %>
+            </li></a><br>
+            <% elsif current_user.moderator? %>
+             <li ><a class="anavbar">  
+                <%= link_to "Moderator", moderator_path, class: "controldrop  anavbar2" %>
+            </li></a><br>
+      <% end %>
               <li ><a class="anavbar">  
-                <%= link_to 'New Blog',  posters_path, class: "controldrop btndrop anavbar" %>
-              </li></a>
-            </ul><br>
-            <ul class="navbar-nav">
-              <li ><a class="anavbar">  
-                <%= link_to "Moderator", moderator_path, class: "controldrop btndrop anavbar" if current_user.moderator? %>
+                <%= link_to 'New Blog',  posters_path, class: "controldrop  anavbar2" %>
               </li></a>
             </ul><br>
                   <ul class="navbar-nav">
               <li ><a class="anavbar">  
-                <%= link_to 'New Project',  new_project_path, class: "controldrop btndrop anavbar" %>
+                <%= link_to 'New Project',  new_project_path, class: "controldrop  anavbar2" %>
               </li></a>
             </ul><br>
+            
  <label class="drop">
                 <input type="checkbox" id="target-drop-example"> <!-- Toggle Drop -->
                 <span class="controldrop btndrop">Profile</span> <!-- Fake button -->
           
                 <!-- Items -->
                 <ul class="drop-items">
-                  <li class="item-drop">
-                   <%= link_to "Edit Account", edit_user_registration_path, class: "adrop" %></li> 
+                 <li class="item-drop">
+                    <%= link_to current_user.username, user_path(current_user) %>
+                    </li>
                   <li class="item-drop">
                     <%= link_to('Logout', destroy_user_session_path, 'data-turbo-method': :delete, class: "#" ) %></li>
+
                 </ul>
           
                 <!-- Alternative to close dropdown with click out -->

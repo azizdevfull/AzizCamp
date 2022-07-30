@@ -1,22 +1,46 @@
 <div id="<%= dom_id poster %>">
-  
-  <p>
-    <strong>Title:</strong>
+  <style>
+  .img_upload{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0;
+    width: 237px;
+}
+  </style>
+    <p>
     <%= poster.title %>
-  </p>
-  <h5>posted by <%= link_to poster.user.username, user_path(poster.user) %> </h5>
-  <h4> <%= pluralize(poster.views, "view") %> </h4>
-  
-  <% if poster.pcomments.count != 0 %>
-    <h5> <%= pluralize(poster.pcomments.count, "comment") %> </h5>
-    <% else %>
-    <h5> No Comment</h5>
-  <% end %>
-  
-  
+  </p>    
   <p>
-    <strong>Body:</strong>
+    <strong>Posted:</strong>
+    <%= local_time poster.created_at, format: :long %>
+  </p>
+<% if poster.image.attached? %>
+
+<% if   poster.image.image?%> <br>
+<p><%= link_to image_tag(poster.image, class: "img_upload"),  rails_blob_path(poster.image, disposition: "attachment") %></p>  
+<td>
+
+<% elsif poster.image.audio? %>
+  <p><%= poster.image.filename %></p>
+  <audio controls>
+  <source src=" <%= rails_blob_url(poster.image, disposition: "attachment") %>" type="audio/mpeg"/>
+  </audio>
+<% else %>
+  <tr>
+    <%= link_to poster.image.filename,  rails_blob_path(poster.image, disposition: "attachment") %></p>  
+         <div>
+        </div>
+  </tr>
+  <% end %>
+  <% end %>  
+
+  <h5>posted by <%= link_to poster.user.username, user_path(poster.user) %> </h5>
+  <p> <%= pluralize(poster.views, "view") %> </p>
+
+  <p>
     <%= poster.body %>
   </p>
+
+
 
 </div>

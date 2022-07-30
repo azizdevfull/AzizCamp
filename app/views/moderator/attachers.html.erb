@@ -1,2 +1,50 @@
-<h1>Moderator#attachers</h1>
-<p>Find me in app/views/moderator/attachers.html.erb</p>
+<div class="container">
+<style>
+
+.img_upload{
+   border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+</style>
+  <h1 class="text-center">Moderator</h1>
+  <%= render 'moderator/nav_links' %>
+
+     <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+      
+        <th scope="col">Id</th>
+        <th scope="col">Author</th>
+        <th scope="col">Project</th>
+        <th scope="col">Name</th>
+        <th scope="col">Upload</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @attachers.each do |attacher| %>
+        <tr>
+          <th scope="row"><%= attacher.id %></th>
+          <th scope="row"><%= attacher.project.user.username %></th>
+        <td><%= attacher.project.name %></td>
+        <td><%= attacher.name %></td>
+        <% if  attacher.upload.image?%>
+        <td><%= link_to image_tag(attacher.upload, class: "img_upload"),  rails_blob_path(attacher.upload, disposition: "attachment") %></td>
+        <% elsif attacher.upload.audio? %>
+        <th><%= attacher.upload.filename %> <br>
+        <audio controls>
+        <source src=" <%= rails_blob_url(attacher.upload, disposition: "attachment") %>" type="audio/mpeg"/>
+        </audio></th>
+        <% else %>
+        <td>
+        <%= link_to attacher.upload.filename,  rails_blob_path(attacher.upload, disposition: "attachment") %></p>  
+         </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>

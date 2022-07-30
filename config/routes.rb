@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  authenticated :user, ->(user) { user.moderator? || user.admin? || user.user? } do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
   authenticated :user, ->(user) { user.moderator? } do
   get 'moderator', to: 'moderator#index'
   get 'moderator/projects'
@@ -10,11 +12,12 @@ Rails.application.routes.draw do
   get 'moderator/users'
   get 'moderator/roject'
   get 'moderator/show_poster/:id', to: "moderator#show_poster", as: 'moderator_poster'
+  get 'moderator/show_pcomment/:id', to: "moderator#show_pcomment", as: 'moderator_pcomment'
   get 'users/profile'
+  get 'moderator/new_poster'
   end
   resources :posters do
-    resources :comments
-    resources :pcomments
+      resources :pcomments
   end
   
   root 'pages#home'
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
     resources :attachers
     end
 
-  get 'u/:id', to: 'users#profile', as: 'user'
+  get 'user/:id', to: 'users#profile', as: 'user'
 
 
   # authenticated :user, ->(user) { user.admin? } do

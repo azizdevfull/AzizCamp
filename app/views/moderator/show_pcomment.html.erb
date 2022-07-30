@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="text-center">Moderator</h1>
+  <%= render "moderator/nav_links" %>
+  <div class="text-center mt-5">
+  </div>
+  <div class="row mt-1">
+    <p>
+      <strong>Name:</strong> <%= @pcomment.name %>
+    </p>
+  </div>
+  <div class="row mt-1">
+  </div>
+  <div class="row mt-1">
+    <p><strong>Author:</strong>
+      <%= "#{@pcomment.user.email} | #{@pcomment.user.username} | #{pluralize(@pcomment.user.views, "View")}" %>
+    </p>
+  </div>
+</div>

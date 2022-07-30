@@ -1,7 +1,10 @@
-<h1>Editing task</h1>
+<%= render 'pages/navbar' %>
+<h1 align="center">Editing task</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@task.project, @task] %> |
-<%= link_to 'Back', project_tasks_path(@task.project) %>
+
+<%= render 'projects/menu' %>
+
+
 <%= render 'projects/menu' %>

@@ -1,4 +1,26 @@
 <div class="container">
   <h1 class="text-center">Moderator</h1>
   <%= render 'moderator/nav_links' %>
+
+    <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Author</th>
+        <th scope="col">Poster</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pcomments.each do |pcomment| %>
+        <tr>
+          <th scope="row"><%= pcomment.id %></th>
+          <td><%= link_to pcomment.name.truncate(15), moderator_pcomment_path(pcomment) %></td>
+          <td><%= pcomment.user.username %></td>
+          <td><%= link_to pcomment.poster.title, moderator_poster_path(pcomment.poster) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>

@@ -1,14 +1,101 @@
-<p style="color: green"><%= notice %></p>
+<%= render 'pages/navbar' %>
 
-<h1>Posters</h1>
 
-<div id="posters">
-  <% @posters.each do |poster| %>
-    <%= render poster %>
-    <p>
-      <%= link_to "Show this poster", poster %>
-    </p>
-  <% end %>
+<%= stylesheet_link_tag "poster" %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <body class="bd-poster">
+<%= link_to "New Post", new_poster_path, class: "btn btn-primary post_btn" %>
+        
+   <style>
+  .img_upload{
+   border: 1px solid #ddd;
+  border-radius: 4px;
+    width: 283px;
+    height: 294px;
+}
+  </style>
+<div class="container"> <br>
+    <p style="color: white"><%= notice %></p>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+
+                <% @posters.each do |poster| %>
+                <div class="col-md-6 col-xl-4">
+                    <article class="post">
+                        <div class="article-v2">
+                            <figure class="article-thumb">
+                                <a href="#">
+                                    <% if poster.image.attached? %>
+
+                                      <% if poster.image.image?%>
+                              <%= link_to image_tag(poster.image, class: "img_upload"),  rails_blob_path(poster.image, disposition: "attachment") %>
+
+                              <% elsif poster.image.audio? %>
+                                <p><%= poster.image.filename %></p>
+                                <audio controls>
+                                <source src=" <%= rails_blob_url(poster.image, disposition: "attachment") %>" type="audio/mpeg"/>
+                                </audio>
+                              <% else %>
+                                  <%= link_to poster.image.filename,  rails_blob_path(poster.image, disposition: "attachment") %></p>  
+                                <% end %>
+                                <% end %>
+                                </a>
+                            </figure>
+                            <!-- /.article-thumb -->
+                            <div class="article-content-main">
+                                <div class="article-header">
+                                    <h2 class="entry-title"><%= poster.title %></h2>
+                                    <div class="entry-meta">
+                                        <div class="entry-date"><%= local_time poster.created_at, format: :long %></div>
+                                        <!-- /.entry-date -->
+                                        <div class="entry-cat">
+                                         <i class="pe-7s-user us_i"></i> <%= link_to poster.user.username, user_path(poster.user) %>
+                                        </div>
+                                        <!--  /.entry-cat -->
+                                    </div>
+                                    <!-- /.entry-meta -->
+                                </div>
+                                <!-- /.article-header -->
+                                <div class="article-content">
+                                    <p><%= poster.body %></p>
+                                </div>
+                                <!--  /.article-content -->
+                                <div class="article-footer">
+                                    <div class="row">
+                                        <div class="col-6 text-left footer-link">
+                                            <%= link_to "Read More", poster, class: "more-link" %>
+                                        </div>
+                                        <!--  /.col-6 -->
+                                        <div class="col-6 text-right footer-meta">
+                                             <% if poster.pcomments.count != 0 %>
+                                             <a>
+                                                  <%= poster.pcomments.count %><i class="pe-7s-comment"></i></a>
+                                            <% else %>
+                                          
+                                          <% end %>
+                                            <a><%= poster.views %><i class="pe-7s-look"></i></a>
+                                        </div>
+                                        <!--  /.col-6 -->
+                                    </div>
+                                    <!--  /.row -->
+                                </div>
+                                <!--  /.article-footer -->
+                            </div>
+                            <!--  /.article-content-main -->
+                        </div>
+                        <!--  /.article-v2 -->
+                    </article>
+                    <!--  /.post -->
+                </div><br><br><br>
+                <!--  /.col-md-6 -->
+                  <% end %>
+            </div>
+            <!--  /.blog-carousel -->
+        </div>
+        <!--  /.col-12 -->
+    </div>
+    <!--  /.row -->
 </div>
-
-<%= link_to "New poster", new_poster_path %>
+<%= render 'projects/menu' %>
+ </body>

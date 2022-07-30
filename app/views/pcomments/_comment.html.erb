@@ -1,5 +1,8 @@
 <div class="comment-<%= pcomment.id %> container"
     style="border: 1px solid black; padding: 1em; margin: 1em;">
+    <div id="comment-body-<%= pcomment.id %>">
+    <%= pcomment.name %>
+  </div><hr />
   <%= pcomment.user.username %><br />
   <% if (pcomment.updated_at - pcomment.created_at) > 1 %>
     <span>Edited <%= time_ago_in_words(pcomment.updated_at) %> ago</span>
@@ -26,8 +29,6 @@
        submit_label: "Update" %>
     </div>
   <% end %>
-  <hr />
-  <div id="comment-body-<%= pcomment.id %>">
-    <%= pcomment.name %>
-  </div>
+  
+
 </div>

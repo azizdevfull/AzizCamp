@@ -7,18 +7,35 @@
         <th scope="col">Id</th>
         <th scope="col">Username</th>
         <th scope="col">Email</th>
-        <th scope="col">Password</th>
+        <th scope="col">Role</th>
+        <th scope="col">Project</th>
+        <th scope="col">Poster</th>
       </tr>
     </thead>
     <tbody>
+    
       <% @users.each do |user| %>
+      
         <tr>
+        
           <th scope="row"><%= user.id %></th>
           <td><%= user.username  %></td>
           <td><%= user.email %></td>
-          <td> <%= user.password %></td>
+          <td><%= user.role %></td>
+          <% user.projects.each do |project| %>
+          <% if !project.name %>
+            <td><%= project.name %></td>
+            <% elsif project.name %>
+            <td><%= project.name %></td>
+            <% else %>
+          <% end %>
+          
+          <% end %>
         </tr>
       <% end %>
+      
     </tbody>
   </table>
 </div>
+
+

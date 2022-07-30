@@ -83,13 +83,14 @@ gem "sassc-rails", "~> 2.1"
 
 gem "bootstrap", "~> 5.1"
 
-gem "nested_scaffold", "~> 1.1"
-
-gem "carrierwave", "~> 2.2"
-
-gem "mini_magick", "~> 4.11"
 
 # gem 'activeadmin-audit'
 gem 'active_admin_flat_skin'
 gem 'font-awesome-rails'
 gem "rails_admin", "~> 3.0"
+
+gem "ckeditor", "~> 5.1"
+
+gem "friendly_id", "~> 5.4"
+
+gem "local_time", "~> 2.1"
