@@ -38,6 +38,7 @@
 
       <% if current_user.moderator? || current_user.admin? %>
     <div>
+      <h3>This option is only available to administrators and moderators</h3>
   <%= form.label :user, style: "display: block" %>
   <%= form.select :user_id, options_for_select(@users.collect { |cat| [cat.username, cat.id] } ) %>
   </div> 
