@@ -1,4 +1,4 @@
-# Welcome to My Basecamp 2
+# Welcome to My Basecamp
 I worked on ruby on rails!
 Rails doesn't work in docode so I made my_basecamp_2 work in vscode!
 i put my project on host and put the code on github!
