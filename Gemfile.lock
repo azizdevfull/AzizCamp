@@ -193,7 +193,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    local_time (2.1.0)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -362,7 +361,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  local_time (~> 2.1)
   pg
   puma (~> 5.0)
   rails (~> 7.0.3)

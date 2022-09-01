@@ -47,7 +47,7 @@
                                 <div class="article-header">
                                     <h2 class="entry-title"><%= poster.title %></h2>
                                     <div class="entry-meta">
-                                        <div class="entry-date"><%= local_time poster.created_at, format: :long %></div>
+                                        <div class="entry-date"><%= localize poster.created_at, format: :long %></div>
                                         <!-- /.entry-date -->
                                         <div class="entry-cat">
                                          <i class="pe-7s-user us_i"></i> <%= link_to poster.user.username, user_path(poster.user) %>

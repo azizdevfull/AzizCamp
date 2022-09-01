@@ -12,7 +12,7 @@
   </p>    
   <p>
     <strong>Posted:</strong>
-    <%= local_time poster.created_at, format: :long %>
+    <%= localize poster.created_at, format: :long %>
   </p>
 <% if poster.image.attached? %>
 
