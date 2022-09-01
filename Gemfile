@@ -95,3 +95,5 @@ gem "friendly_id", "~> 5.4"
 
 gem "local_time", "~> 2.1"
 gem "aws-sdk-s3", require: false
+gem "streamio-ffmpeg", "~> 3.0"
+gem "active_storage_validations", "~> 0.9.8"

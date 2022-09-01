@@ -1,6 +1,6 @@
 <%= render 'pages/navbar' %>
 
-<p style="color: green"><%= notice %></p>
+<%= render 'alert' if notice %>
 <div class="container">
 <%= render @poster %>
 
