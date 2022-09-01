@@ -9,16 +9,12 @@ class PostersController < InheritedResources::Base
   # GET /posts/1 or /posts/1.json
   def show
     @poster.update(views: @poster.views + 1)
-    # @comments = @poster.comments.order(created_at: :desc)
     @pcomments = @poster.pcomments.order(created_at: :desc)
-   end
-    
-    # @comments = @post.comments.includes(:user, :rich_text_body).order(created_at: :desc)
 
-    # ahoy.track 'Viewed Post', post_id: @post.id
+    mark_notifications_as_read
+  end
 
-    # mark_notifications_as_read
-  
+
 
   # GET /posts/new
   def new
@@ -83,6 +79,13 @@ class PostersController < InheritedResources::Base
 
     def poster_params
       params.require(:poster).permit(:title, :body, :user_id, :image)
+    
     end
+  def mark_notifications_as_read
+    if current_user
+      notifications_to_mark_as_read = @poster.notifications_as_poster.where(recipient: current_user)
+      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+    end
+  end
 
 end
