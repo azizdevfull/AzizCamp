@@ -15,7 +15,8 @@ class Poster < ApplicationRecord
     # validates :image, dimension: { width: { in: 80..100 }, message: 'is not given between dimension' }
     # validates :image, attached: true, content_type: { in: 'application/jpg', message: 'is not a Image' }
     # validate :validate_attachment_filetypes
-
+    has_noticed_notifications model_name: 'Notification'
+    has_many :notifications, through: :user, dependent: :destroy
     # private
     # def validate_attachment_filetypes
     #     return unless rasim.attached?
