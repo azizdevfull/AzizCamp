@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
-  # before_action :set_user_time_zone
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_notifications, if: :current_user
+
+  private
+
+  def set_notifications
+    notifications = Notification.where(recipient: current_user).newest_first.limit(9)
+    @unread = notifications.unread
+    @read = notifications.read
+  end
+  # before_action :set_user_time_zone
   # around_action :set_user_time_zone, if: :current_user
 
 # private 
