@@ -84,7 +84,7 @@ class PostersController < InheritedResources::Base
   def mark_notifications_as_read
     if current_user
       notifications_to_mark_as_read = @poster.notifications_as_poster.where(recipient: current_user)
-      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+      notifications_to_mark_as_read.update_all(read_at: Time.zone.now, format: :long)
     end
   end
 
