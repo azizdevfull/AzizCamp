@@ -11,7 +11,7 @@ class PostersController < InheritedResources::Base
     @poster.update(views: @poster.views + 1)
     @pcomments = @poster.pcomments.order(created_at: :desc)
 
-    mark_notifications_as_read
+    # mark_notifications_as_read
   end
 
 
@@ -81,11 +81,11 @@ class PostersController < InheritedResources::Base
       params.require(:poster).permit(:title, :body, :user_id, :image)
     
     end
-  def mark_notifications_as_read
-    if current_user
-      notifications_to_mark_as_read = @poster.notifications_as_poster.where(recipient: current_user)
-      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
-    end
-  end
+  # def mark_notifications_as_read
+  #   if current_user
+  #     notifications_to_mark_as_read = @poster.notifications_as_poster.where(recipient: current_user)
+  #     notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+  #   end
+  # end
 
 end
