@@ -29,6 +29,7 @@
       field :id
       field :title
       field :body
+      field :image
       field :created_at
       field :updated_at
       field :views
@@ -39,6 +40,7 @@
     show do
       field :title
       field :body
+      field :image
       field :views
       field :user_name
       field :pcomments
@@ -47,6 +49,7 @@
     create do
       field :title
       field :body
+      field :image
       field :views
       field :user_id, :enum do
         enum do
@@ -59,6 +62,7 @@
 
     edit do
       field :title
+      field :image
       field :body
       field :views
       field :user_id, :enum do
