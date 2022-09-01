@@ -19,7 +19,7 @@ class PcommentNotification < Noticed::Base
     @poster = Poster.find(params[:pcomment][:poster_id])
     @pcomment = Pcomment.find(params[:pcomment][:id])
     @user = User.find(@pcomment.user_id)
-    "#{@user.email} commented on #{@poster.title.truncate(10)}"
+    "#{@user.username} commented on #{@poster.title.truncate(10)}"
   end
 
   def url

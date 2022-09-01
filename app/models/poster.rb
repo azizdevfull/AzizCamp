@@ -1,5 +1,4 @@
 class Poster < ApplicationRecord
-
     belongs_to :user
     has_many :pcomments, dependent: :destroy
     has_one_attached :image
