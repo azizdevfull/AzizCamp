@@ -1,20 +1,20 @@
 class ApplicationController < ActionController::Base
   # before_action :set_user_time_zone
   before_action :configure_permitted_parameters, if: :devise_controller?
-  around_action :set_user_time_zone, if: :current_user
+  # around_action :set_user_time_zone, if: :current_user
 
 # private 
 
-def set_user_time_zone
-  Time.use_zone(current_user.time_zone) { yield }
-end
+# def set_user_time_zone
+#   Time.use_zone(current_user.time_zone) { yield }
+# end
 
   protected
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: [:email, :password]
-    devise_parameter_sanitizer.permit :account_update, keys: [:time_zone]
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
   attr_writer :email
 
