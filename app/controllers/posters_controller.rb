@@ -58,6 +58,7 @@ class PostersController < InheritedResources::Base
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @poster = Poster.find(params[:id])
     @poster.destroy
     respond_to do |format|
       format.html { redirect_to posters_url, notice: 'Post was successfully destroyed.' }
@@ -79,7 +80,7 @@ class PostersController < InheritedResources::Base
 
     def poster_params
       params.require(:poster).permit(:title, :body, :user_id, :image)
-    
+
     end
   # def mark_notifications_as_read
   #   if current_user
