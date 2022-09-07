@@ -3,10 +3,6 @@ I worked on ruby on rails!
 Rails doesn't work in docode so I made my_basecamp_2 work in vscode!
 i put my project on host and put the code on github!
 
-```
-Test
-```
-
 # My Basecamp
 
 My project has 2 admin types <strong>Moderator</strong> and <strong>Admin</strong>
