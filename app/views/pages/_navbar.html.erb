@@ -13,15 +13,15 @@
       <ul class="navbar-nav">
       <% if current_user.admin? %>
         <li ><a class="anavbar">  
-                <%= link_to "Admin", "/admin", class: "controldrop  anavbar2" %>
+                <%= link_to "Admin Dashboard", "/admin", class: "controldrop  anavbar2" %>
             </li></a><br>
             <% elsif current_user.moderator? %>
              <li ><a class="anavbar">  
-                <%= link_to "Moderator", moderator_path, class: "controldrop  anavbar2" %>
+                <%= link_to "Moderator Dashboard", moderator_path, class: "controldrop  anavbar2" %>
             </li></a><br>
       <% end %>
               <li ><a class="anavbar">  
-                <%= link_to 'New Blog',  posters_path, class: "controldrop  anavbar2" %>
+                <%= link_to 'Blogs',  posters_path, class: "controldrop  anavbar2" %>
               </li></a>
             </ul><br>
                   <ul class="navbar-nav">
