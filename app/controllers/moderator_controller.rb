@@ -6,7 +6,8 @@ class ModeratorController < ApplicationController
   end
 
   def projects
-    @projects = Project.all.includes(:user, :attacher)
+    @projects = Project.all
+    # .includes(:user, :attacher)
   end
 
   def attachers
