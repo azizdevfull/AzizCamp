@@ -19,7 +19,6 @@
       <% @projects.each do |project| %>
         <tr>
           <th scope="row"><%= project.id %></th>
-        <td><%= project.user.email %></td>
         <td><%= project.name %></td>
         <td><%= project.description %></td>
         <td><%= project.created_at %></td>
